@@ -42,10 +42,12 @@ func main() {
 }
 ```
 
+Result: 
 ```text
-Hello World
+2024/08/29 21:59:21 Hello World
 ```
 
+### Debug
 
 ```go
 package main
@@ -89,6 +91,7 @@ func main() {
 
 ```
 
+Result:
 ```text
 2024/08/29 18:07:36 [Task] [Start] hello
 2024/08/29 18:07:36 [Task] [Params] [1 2 3 4 {test}]
