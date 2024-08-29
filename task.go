@@ -12,7 +12,7 @@ type (
 	Task struct {
 		Tasks  []Item
 		debug  bool
-		logger log.Logger
+		logger *log.Logger
 	}
 	Item struct {
 		Name string
@@ -52,10 +52,7 @@ func (task_params Params) Parse(need_params ...any) error {
 }
 
 func New() *Task {
-	logger := log.Logger{}
-	logger.SetFlags(log.Ldate | log.Ltime | log.Lmsgprefix)
-	logger.SetOutput(os.Stdout)
-	logger.SetPrefix("[Task] ")
+	logger := log.New(os.Stdout, "[Task] ", log.Ldate|log.Ltime|log.Lmsgprefix)
 	return &Task{
 		logger: logger,
 	}

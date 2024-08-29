@@ -4,6 +4,49 @@ a simple task queue based on golang
 
 ## Usage
 
+### Hello World
+
+```go
+package main
+
+import (
+	"log"
+
+	"github.com/sumwai/gotask"
+)
+
+func main() {
+	task := gotask.New()
+	task.AddTask("task1", func(params ...any) any {
+		var name string
+		if err := gotask.Params(params).Parse(&name); err != nil {
+			return gotask.Exit{
+				Message: "No data",
+				Data:    err.Error(),
+			}
+		}
+		return name
+	})
+	task.AddTask("task2", func(params ...any) any {
+		var name string
+		if err := gotask.Params(params).Parse(&name); err != nil {
+			return gotask.Exit{
+				Message: "No data",
+				Data:    err.Error(),
+			}
+		}
+		return name + " World"
+	})
+	ret := task.Run("Hello")
+	log.Println(ret)
+}
+```
+
+```text
+Hello World
+```
+
+
 ```go
 package main
 
